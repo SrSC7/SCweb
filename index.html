@@ -2,7 +2,23 @@
 
 <html lang="cz">
   <head>
-    
+
+<!-- Google Consent Mode -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7ZCZQ8CX56"></script>
 <script>
@@ -729,6 +745,442 @@ if (statsSection) {
 }
 
 </script>
+
+```html
+<!-- ============================= -->
+<!-- SCweb – Cookie / Analytics Banner -->
+<!-- ============================= -->
+
+<div id="scwebConsentBanner" class="scweb-consent-banner" aria-hidden="true">
+
+    <div class="scweb-consent-content">
+
+        <div class="scweb-consent-text">
+            <strong>🍪 Soukromí na SCwebu</strong>
+
+            <p>
+                SCweb používá Google Analytics pro měření návštěvnosti
+                a zjišťování, které části webu uživatelé používají.
+                Analytiku můžeš povolit nebo odmítnout.
+            </p>
+
+        </div>
+
+        <div class="scweb-consent-buttons">
+
+            <button
+                type="button"
+                id="scwebConsentAccept"
+                class="scweb-consent-accept"
+            >
+                Souhlasím
+            </button>
+
+            <button
+                type="button"
+                id="scwebConsentReject"
+                class="scweb-consent-reject"
+            >
+                Odmítnout
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+/* =========================================
+   SCweb – Cookie / Analytics Banner
+   ========================================= */
+
+.scweb-consent-banner {
+    display: none;
+
+    position: fixed;
+
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+
+    z-index: 99998;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 35px rgba(0, 0, 0, 0.20);
+
+    padding: 20px 22px;
+
+    font-family: inherit;
+}
+
+.scweb-consent-banner.scweb-consent-visible {
+    display: block;
+
+    animation: scwebConsentAppear 0.2s ease-out;
+}
+
+
+.scweb-consent-content {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+}
+
+
+.scweb-consent-text {
+    flex: 1;
+}
+
+
+.scweb-consent-text strong {
+    display: block;
+
+    font-size: 17px;
+
+    margin-bottom: 5px;
+}
+
+
+.scweb-consent-text p {
+    margin: 0 0 5px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    line-height: 1.45;
+}
+
+
+.scweb-consent-link {
+    color: inherit;
+
+    font-size: 13px;
+
+    text-decoration: underline;
+}
+
+
+.scweb-consent-buttons {
+    display: flex;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+}
+
+
+.scweb-consent-buttons button {
+    border: none;
+
+    border-radius: 9px;
+
+    padding: 11px 17px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        opacity 0.15s ease,
+        transform 0.1s ease;
+}
+
+
+.scweb-consent-buttons button:hover {
+    opacity: 0.85;
+}
+
+
+.scweb-consent-buttons button:active {
+    transform: scale(0.97);
+}
+
+
+.scweb-consent-accept {
+    background: #222;
+
+    color: #ffffff;
+}
+
+
+.scweb-consent-reject {
+    background: #eeeeee;
+
+    color: #222222;
+}
+
+
+@keyframes scwebConsentAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   Mobil
+   ========================================= */
+
+@media (max-width: 650px) {
+
+    .scweb-consent-banner {
+
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+
+        padding: 18px;
+
+    }
+
+
+    .scweb-consent-content {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 15px;
+
+    }
+
+
+    .scweb-consent-buttons {
+
+        width: 100%;
+
+    }
+
+
+    .scweb-consent-buttons button {
+
+        flex: 1;
+
+    }
+
+}
+
+</style>
+
+
+<script>
+
+/* =========================================
+   SCweb – Consent management
+   ========================================= */
+
+(function () {
+
+    const CONSENT_KEY = "scweb_analytics_consent";
+
+    const banner =
+        document.getElementById("scwebConsentBanner");
+
+    const acceptButton =
+        document.getElementById("scwebConsentAccept");
+
+    const rejectButton =
+        document.getElementById("scwebConsentReject");
+
+
+    /* -----------------------------------------
+       Nastavení consentu
+       ----------------------------------------- */
+
+    function setConsent(value) {
+
+        if (typeof window.gtag === "function") {
+
+            window.gtag("consent", "update", {
+
+                analytics_storage:
+                    value === "granted"
+                        ? "granted"
+                        : "denied",
+
+                ad_storage: "denied",
+
+                ad_user_data: "denied",
+
+                ad_personalization: "denied"
+
+            });
+
+        }
+
+
+        try {
+
+            localStorage.setItem(
+                CONSENT_KEY,
+                value
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "SCweb: Nepodařilo se uložit consent.",
+                error
+            );
+
+        }
+
+
+        hideBanner();
+    }
+
+
+    /* -----------------------------------------
+       Zobrazení banneru
+       ----------------------------------------- */
+
+    function showBanner() {
+
+        if (!banner) {
+            return;
+        }
+
+        banner.classList.add(
+            "scweb-consent-visible"
+        );
+
+        banner.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+    }
+
+
+    /* -----------------------------------------
+       Skrytí banneru
+       ----------------------------------------- */
+
+    function hideBanner() {
+
+        if (!banner) {
+            return;
+        }
+
+        banner.classList.remove(
+            "scweb-consent-visible"
+        );
+
+        banner.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+
+    /* -----------------------------------------
+       Zjištění uložené volby
+       ----------------------------------------- */
+
+    let savedConsent = null;
+
+    try {
+
+        savedConsent =
+            localStorage.getItem(
+                CONSENT_KEY
+            );
+
+    } catch (error) {
+
+        savedConsent = null;
+
+    }
+
+
+    /* -----------------------------------------
+       Pokud už uživatel rozhodl,
+       banner nezobrazujeme.
+       ----------------------------------------- */
+
+    if (
+        savedConsent === "granted" ||
+        savedConsent === "denied"
+    ) {
+
+        hideBanner();
+
+    } else {
+
+        showBanner();
+
+    }
+
+
+    /* -----------------------------------------
+       Souhlasím
+       ----------------------------------------- */
+
+    if (acceptButton) {
+
+        acceptButton.addEventListener(
+            "click",
+            function () {
+
+                setConsent("granted");
+
+            }
+        );
+
+    }
+
+
+    /* -----------------------------------------
+       Odmítnout
+       ----------------------------------------- */
+
+    if (rejectButton) {
+
+        rejectButton.addEventListener(
+            "click",
+            function () {
+
+                setConsent("denied");
+
+            }
+        );
+
+    }
+
+})();
+
+</script>
+```
+
 
   </body>
 </html>
