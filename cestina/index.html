@@ -416,7 +416,7 @@
   <p>Stránce, kde najdeš všechny zápisky přehledně na jednom místě</p>
 </section>
 
-<div style="width: 100%; height: 400px; background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://cdn.pixabay.com/photo/2022/05/12/21/11/flag-7192380_960_720.jpg'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; font-family: 'Segoe UI', sans-serif;">
+<div class="hero" style="width: 100%; height: 400px; background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://cdn.pixabay.com/photo/2022/05/12/21/11/flag-7192380_960_720.jpg'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; font-family: 'Segoe UI', sans-serif;">
   <h1 style="font-size: 100px; font-weight: 800; margin: 0; padding-top: 70px; text-shadow: 4px 4px 10px rgba(0,0,0,0.8); letter-spacing: 2px;">
     ČESKÝ JAZYK
   </h1>
@@ -1027,6 +1027,34 @@
     }
 
 })();
+
+// HERO POSUN
+function adjustTopbarSpacing() {
+    const topbar = document.querySelector('.topbar');
+    const banner = document.querySelector('.banner');
+    const hero = document.querySelector('.hero');
+
+    if (!topbar || !banner || !hero) return;
+
+    const topbarHeight = topbar.getBoundingClientRect().height;
+    const bannerHeight = banner.getBoundingClientRect().height;
+
+    const extraSpace = Math.max(0, topbarHeight - bannerHeight - 25);
+
+    hero.style.marginTop = extraSpace + 'px';
+}
+
+window.addEventListener('load', adjustTopbarSpacing);
+window.addEventListener('resize', adjustTopbarSpacing);
+
+const topbar = document.querySelector('.topbar');
+
+if (topbar) {
+    const observer = new ResizeObserver(adjustTopbarSpacing);
+    observer.observe(topbar);
+}
+
+setTimeout(adjustTopbarSpacing, 600);
 
 </script>
 

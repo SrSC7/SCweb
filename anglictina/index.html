@@ -1010,6 +1010,35 @@
 
 })();
 
+
+// HERO POSUN
+function adjustTopbarSpacing() {
+    const topbar = document.querySelector('.topbar');
+    const banner = document.querySelector('.banner');
+    const hero = document.querySelector('.hero');
+
+    if (!topbar || !banner || !hero) return;
+
+    const topbarHeight = topbar.getBoundingClientRect().height;
+    const bannerHeight = banner.getBoundingClientRect().height;
+
+    const extraSpace = Math.max(0, topbarHeight - bannerHeight - 25);
+
+    hero.style.marginTop = extraSpace + 'px';
+}
+
+window.addEventListener('load', adjustTopbarSpacing);
+window.addEventListener('resize', adjustTopbarSpacing);
+
+const topbar = document.querySelector('.topbar');
+
+if (topbar) {
+    const observer = new ResizeObserver(adjustTopbarSpacing);
+    observer.observe(topbar);
+}
+
+setTimeout(adjustTopbarSpacing, 600);
+
 </script>
 
   </body>
