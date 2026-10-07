@@ -1354,7 +1354,7 @@
     "subject": "Zsv",
     "grade": "4. ročník",
     "url": "https://docs.google.com/document/d/1DhRMtVq-tII48QcsB3NHf6DgtQxFTaqPA1bXP5iC6zo/export?format=docx",
-    "keywords": ["logika"]
+    "keywords": ["logika", "logos", "myšlení", "myšlenková operace", "analýza", "syntéza", "indukce", "dedukce", "srovnávání", "zobecnění", "abstrakce", "formální logika", "výroková logika", "výroková spojka", "konjunkce", "disjunkce", "ekvivalence", "implikace", "negovaný výrok", "tautologie", "kontradikce", "predikátová logika", "všeobecný výraz", "existenční výraz", "neformální logika", "teorie argumentace", "kvaziargumentace", "pseudoargumentace", "argumentace ad baculum", "citové vydírání", "argumentace společenským apelem", "argumentace individuálním apelem", "argumentace dovoláváním se autority", "ekvivokace", "amfibolie", "pýthický výrok", "chybná interpretace slovních tvarů", "argumentační etika"]
   },
   {
     "title": "Etika",
@@ -1362,5 +1362,12 @@
     "grade": "4. ročník",
     "url": "https://docs.google.com/document/d/1k14EtnIQMXnkMEHVn8T8RdnXlKBHlJ68a1IP4bCy-FQ/export?format=docx",
     "keywords": ["etika"]
+  },
+    {
+    "title": "Filozofie",
+    "subject": "Zsv",
+    "grade": "4. ročník",
+    "url": "",
+    "keywords": ["filozofie"]
   }
 ]
